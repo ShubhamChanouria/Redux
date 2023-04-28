@@ -9,7 +9,7 @@ const userSlice = createSlice({
     deleteUsers(state, action){}
   },
 });
-console.log(userSlice.actions);
 
+console.log(userSlice.actions);
 export default userSlice;
 
