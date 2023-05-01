@@ -1,24 +1,38 @@
-import React from 'react';
-import DeleteUser from './DeleteUser';
-import styled from 'styled-components';
+import React from "react";
+import DeleteUser from "./DeleteUser";
+import styled from "styled-components";
+import { FakeUserData } from "../api/index";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/slices/UserSlice";
+import DisplayUsers from "./DisplayUsers";
 
 const UserDetails = () => {
+  const dispatch = useDispatch();
+
+  const addNewUser = (name) => {
+    dispatch(addUser(name));
+  };
+
   return (
     <Wrapper>
- <div className="content">
+      <div className="content">
         <div className="admin-table">
           <div className="admin-subtitle">List of User Details</div>
-          <button className="btn add-btn">Add New Users</button>
+          <button
+            className="btn add-btn"
+            onClick={() => addNewUser(FakeUserData())}
+          >
+            Add New Users
+          </button>
         </div>
         <ul>
-            <li>hi</li>
-            
+          <DisplayUsers />
         </ul>
         <hr />
-        <DeleteUser/>
+        <DeleteUser />
       </div>
-      </Wrapper>
-  )
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`
@@ -57,4 +71,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default UserDetails
+export default UserDetails;
